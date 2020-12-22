@@ -100,9 +100,19 @@ func TestAdd(t *testing.T) {
 		{10, 10, 10},
 	}
 
+	m1Orig := make(m64, len(m1))
+	for i := range m1 {
+		m1Orig[i] = make([]float64, len(m1[i]))
+		copy(m1Orig[i], m1[i])
+	}
+
 	out := m1.Add(m2)
 
 	if !reflect.DeepEqual(exp, out) {
+		t.Fatalf("\nExpected:\t %v\nGot:\t\t %v", exp, out)
+	}
+
+	if !reflect.DeepEqual(m1Orig, m1) {
 		t.Fatalf("\nExpected:\t %v\nGot:\t\t %v", exp, out)
 	}
 }
@@ -125,9 +135,19 @@ func TestApplyFunc(t *testing.T) {
 		{10, 10, 10},
 	}
 
+	m1Orig := make(m64, len(m1))
+	for i := range m1 {
+		m1Orig[i] = make([]float64, len(m1[i]))
+		copy(m1Orig[i], m1[i])
+	}
+
 	out := m1.ApplyFunc(mulfunc)
 
 	if !reflect.DeepEqual(exp, out) {
+		t.Fatalf("\nExpected:\t %v\nGot:\t\t %v", exp, out)
+	}
+
+	if !reflect.DeepEqual(m1Orig, m1) {
 		t.Fatalf("\nExpected:\t %v\nGot:\t\t %v", exp, out)
 	}
 }

@@ -21,7 +21,7 @@ func main() {
 	}
 
 	fmt.Println("Training the neural net...")
-	neuralNet.train(inputs, outputs, 1000)
+	neuralNet.train(inputs, outputs, 1000000)
 	fmt.Println("Finished training")
 
 	fmt.Printf("Layer weights: %v\n", neuronLayer.weights)

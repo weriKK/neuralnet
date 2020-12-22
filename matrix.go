@@ -13,29 +13,31 @@ func newM64(rows, cols int) m64 {
 }
 
 func (m m64) Add(m2 m64) m64 {
+	rows := len(m)
+	cols := len(m[0])
+	result := newM64(rows, cols)
 
-	row := len(m)
-	for i := 0; i < row; i++ {
-		col := len(m[i])
-		for j := 0; j < col; j++ {
-			m[i][j] = m[i][j] + m2[i][j]
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			result[i][j] = m[i][j] + m2[i][j]
 		}
 	}
 
-	return m
+	return result
 }
 
 func (m m64) Sub(m2 m64) m64 {
+	rows := len(m)
+	cols := len(m[0])
+	result := newM64(rows, cols)
 
-	row := len(m)
-	for i := 0; i < row; i++ {
-		col := len(m[i])
-		for j := 0; j < col; j++ {
-			m[i][j] = m[i][j] - m2[i][j]
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			result[i][j] = m[i][j] - m2[i][j]
 		}
 	}
 
-	return m
+	return result
 }
 
 func (m m64) MMul(m2 m64) m64 {
@@ -63,21 +65,22 @@ func (m m64) MMul(m2 m64) m64 {
 }
 
 func (m m64) SMul(m2 m64) m64 {
-	row := len(m)
-	for i := 0; i < row; i++ {
-		col := len(m[i])
-		for j := 0; j < col; j++ {
-			m[i][j] = m[i][j] * m2[i][j]
+	rows := len(m)
+	cols := len(m[0])
+	result := newM64(rows, cols)
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			result[i][j] = m[i][j] * m2[i][j]
 		}
 	}
 
-	return m
+	return result
 }
 
 func (m m64) Transpose() m64 {
 	rows := len(m)
 	cols := len(m[0])
-
 	result := newM64(cols, rows)
 
 	for i := 0; i < rows; i++ {
@@ -90,13 +93,16 @@ func (m m64) Transpose() m64 {
 }
 
 func (m m64) ApplyFunc(f func(float64) float64) m64 {
-	row := len(m)
-	for i := 0; i < row; i++ {
-		col := len(m[i])
-		for j := 0; j < col; j++ {
-			m[i][j] = f(m[i][j])
+	rows := len(m)
+	cols := len(m[0])
+	result := newM64(rows, cols)
+
+	for i := 0; i < rows; i++ {
+
+		for j := 0; j < cols; j++ {
+			result[i][j] = f(m[i][j])
 		}
 	}
 
-	return m
+	return result
 }
