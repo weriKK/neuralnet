@@ -7,30 +7,41 @@ func main() {
 	neuralNet := newNeuralNet(neuronLayer)
 
 	inputs := m64{
+		{0, 0, 0},
 		{0, 0, 1},
-		{1, 1, 1},
-		{1, 0, 1},
+		{0, 1, 0},
 		{0, 1, 1},
+		{1, 0, 0},
+		{1, 0, 1},
+		{1, 1, 0},
+		{1, 1, 1},
 	}
 
 	outputs := m64{
 		{0},
-		{1},
-		{1},
 		{0},
+		{0},
+		{0},
+		{1},
+		{1},
+		{1},
+		{1},
 	}
 
 	fmt.Println("Training the neural net...")
-	neuralNet.train(inputs, outputs, 1000000)
+	neuralNet.train(inputs, outputs, 1)
 	fmt.Println("Finished training")
 
 	fmt.Printf("Layer weights: %v\n", neuronLayer.weights)
 
-	predict(m64{{1, 0, 0}}, neuralNet)
-
-	predict(m64{{0, 1, 0}}, neuralNet)
-
+	predict(m64{{0, 0, 0}}, neuralNet)
 	predict(m64{{0, 0, 1}}, neuralNet)
+	predict(m64{{0, 1, 0}}, neuralNet)
+	predict(m64{{0, 1, 1}}, neuralNet)
+	predict(m64{{1, 0, 0}}, neuralNet)
+	predict(m64{{1, 0, 1}}, neuralNet)
+	predict(m64{{1, 1, 0}}, neuralNet)
+	predict(m64{{1, 1, 1}}, neuralNet)
 
 }
 

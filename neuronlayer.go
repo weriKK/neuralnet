@@ -11,6 +11,9 @@ type neuronLayer struct {
 
 func newNeuronLayer(numNeurons, numInputsPerNeuron int) *neuronLayer {
 
+	// // Bias the system by adding an extra input with constant 1 (this prevents inputs with all 0 from zeroing the weight)
+	// numInputsPerNeuron++
+
 	var n neuronLayer
 	n.weights = newM64(numInputsPerNeuron, numNeurons)
 
